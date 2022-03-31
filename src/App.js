@@ -3,48 +3,38 @@ import axios from "axios";
 
 function App() {
   const [data, setData] = useState({});
+  const [query, setQuery] = useState("");
   const [error, setError] = useState("");
-  const [location, setLocation] = useState("");
-  
 
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=895284fb2d2c50a520ea537456963d9c`;
-
-  const searchLocation = (event) => {
-    if (event.key === "Enter") {
-      axios
-        .get(url)
-        .then((response) => {
-          setData(response.data);
-          setLocation("");
-        })
-        .catch((err) => {
-          setError(err.data);
-          console.log(err.data);
-          setLocation("Try again");
-          setTimeout(() => {
-            setLocation(event.target.value);
-          }, 3000);
-        });
-    }
+  const handleQuery = (e) => {
+    e.preventDefault();
+    axios
+      .get(
+        `https://api.openweathermap.org/data/2.5/weather?q=${query}&units=imperial&appid=895284fb2d2c50a520ea537456963d9c`
+      )
+      .then((response) => {
+        setData(response.data);
+        console.log(data);
+        setQuery("");
+      })
+      .catch((err) => {
+        setError(err.data);
+        console.log(err.data);
+        setQuery("");
+      }, setError(""));
   };
-
-  
 
   return (
     <div className="App">
       <div className="search">
-        <input
-          value={location}
-          onChange={(event) => setLocation(event.target.value)}
-          onKeyPress={searchLocation}
-          placeholder="Enter New Location"
-          type="text"
-        />
+        <input onChange={(e) => setQuery(e.target.value)} value={query} />
+        <button onClick={handleQuery}>Search</button>
       </div>
+
       {error === undefined ? (
         <div className="container">
           <div className="top">
-            <div className="location" >
+            <div className="location">
               <p>Location doesn't exist.</p>
             </div>
           </div>
