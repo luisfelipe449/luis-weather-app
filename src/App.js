@@ -20,8 +20,7 @@ function App() {
       .catch((err) => {
         setError(err.data);
         console.log(err.data);
-        setQuery("");
-      }, setError(""));
+      }, setError(""), setQuery(query));
   };
 
   return (
@@ -32,7 +31,9 @@ function App() {
           value={query}
           placeholder={query}
         />
-        <button className='myButton' onClick={handleQuery}>Buscar</button>
+        <button className="myButton" onClick={handleQuery}>
+          Buscar
+        </button>
       </div>
 
       {error === undefined ? (
