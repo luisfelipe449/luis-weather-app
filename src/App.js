@@ -27,61 +27,67 @@ function App() {
   return (
     <div className="App">
       <div className="search">
-        <input onChange={(e) => setQuery(e.target.value)} value={query} />
-        <button onClick={handleQuery}>Search</button>
+        <input
+          onChange={(e) => setQuery(e.target.value)}
+          value={query}
+          placeholder="Digite a cidade aqui"
+        />
+        <button className='myButton' onClick={handleQuery}>Buscar</button>
       </div>
 
       {error === undefined ? (
         <div className="container">
           <div className="top">
             <div className="location">
-              <p>Location doesn't exist.</p>
+              <p>Localização não existe.</p>
             </div>
           </div>
         </div>
       ) : (
-        <div className="container">
-          <div className="top">
-            <div className="location">
-              <p>{data.name}</p>
+        [
+          <div className="container">
+            <div className="top">
+              <div className="location">
+                <p>{data.name}</p>
+              </div>
+              <div className="temp">
+                {data.main ? (
+                  <h1>{(((data.main.temp - 32) * 5) / 9).toFixed()}°C</h1>
+                ) : null}
+              </div>
+              <div className="description">
+                {data.weather ? <p>{data.weather[0].main}</p> : null}
+              </div>
             </div>
-            <div className="temp">
-              {data.main ? (
-                <h1>{(((data.main.temp - 32) * 5) / 9).toFixed()}°C</h1>
-              ) : null}
-            </div>
-            <div className="description">
-              {data.weather ? <p>{data.weather[0].main}</p> : null}
-            </div>
-          </div>
 
-          {data.name !== undefined && (
-            <div className="bottom">
-              <div className="feels">
-                {data.main ? (
-                  <p className="bold">
-                    {(((data.main.feels_like - 32) * 5) / 9).toFixed()}°C
-                  </p>
-                ) : null}
-                <p>Feels Like</p>
+            {data.name !== undefined && (
+              <div className="bottom">
+                <div className="feels">
+                  {data.main ? (
+                    <p className="bold">
+                      {(((data.main.feels_like - 32) * 5) / 9).toFixed()}°C
+                    </p>
+                  ) : null}
+                  <p>Sensação térmica</p>
+                </div>
+                <div className="humidity">
+                  {data.main ? (
+                    <p className="bold">{data.main.humidity}%</p>
+                  ) : null}
+                  <p>Humidade</p>
+                </div>
+                <div className="wind">
+                  {data.wind ? (
+                    <p className="bold">
+                      {(data.wind.speed * 1.609).toFixed()} KM/h
+                    </p>
+                  ) : null}
+                  <p>Velocidade do vento</p>
+                </div>
               </div>
-              <div className="humidity">
-                {data.main ? (
-                  <p className="bold">{data.main.humidity}%</p>
-                ) : null}
-                <p>Humidity</p>
-              </div>
-              <div className="wind">
-                {data.wind ? (
-                  <p className="bold">
-                    {(data.wind.speed * 1.609).toFixed()} KM/h
-                  </p>
-                ) : null}
-                <p>Wind Speed</p>
-              </div>
-            </div>
-          )}
-        </div>
+            )}
+          </div>,
+        ]
       )}
     </div>
   );

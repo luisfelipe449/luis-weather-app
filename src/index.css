@@ -15,12 +15,29 @@ body {
 }
 
 p {
-  font-size: 1.5rem;
+  font-size: 1.1rem;
 }
 
 h1 {
-  font-size: 5rem;
+  font-size: 3rem;
 }
+
+.myButton {
+  font-family: 'Outfit', 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  margin-top: 2px;
+	background-color:transparent;
+	border-radius:15px;
+	border:1px solid #000000;
+	display:inline-block;
+	cursor:pointer;
+	color:#000000;
+	font-size:17px;
+	padding:7px 25px;
+	text-decoration:none;
+}
+
 
 .App{
   color: rgb(0, 0, 0);
@@ -46,7 +63,7 @@ h1 {
   padding: .7rem 1.5rem;
   font-size: 1.2rem;
   border-radius: 25px;
-  border: 1px solid rgba(255,255,255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
   background: rgba(255,255,255, 0.1);
   color: #000000;
   text-align: center;
@@ -99,6 +116,8 @@ h1 {
   font-weight: 700;
   text-align: center;
 }
+
+
 
 
 
