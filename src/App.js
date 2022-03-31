@@ -5,6 +5,7 @@ function App() {
   const [data, setData] = useState({});
   const [query, setQuery] = useState("");
   const [error, setError] = useState("");
+  const [placeholder, setPlaceholder] = useState("");
 
   const handleQuery = (e) => {
     e.preventDefault();
@@ -16,11 +17,16 @@ function App() {
         setData(response.data);
         console.log(data);
         setQuery("");
+        setPlaceholder(query);
       })
-      .catch((err) => {
-        setError(err.data);
-        console.log(err.data);
-      }, setError(""), setQuery(query));
+      .catch(
+        (err) => {
+          setError(err.data);
+          console.log(err.data);
+        },
+        setError(""),
+        setQuery(query)
+      );
   };
 
   return (
@@ -29,7 +35,7 @@ function App() {
         <input
           onChange={(e) => setQuery(e.target.value)}
           value={query}
-          placeholder={query}
+          placeholder={placeholder}
         />
         <button className="myButton" onClick={handleQuery}>
           Buscar
@@ -40,7 +46,7 @@ function App() {
         <div className="container">
           <div className="top">
             <div className="location">
-              <p>Essa cidade não existe, amor🥺</p>
+              <p>Essa cidade não existe, pesquise novamente. 😅</p>
             </div>
           </div>
         </div>
