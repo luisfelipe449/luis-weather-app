@@ -30,7 +30,7 @@ function App() {
         <input
           onChange={(e) => setQuery(e.target.value)}
           value={query}
-          placeholder="Digite a cidade aqui"
+          placeholder={query}
         />
         <button className='myButton' onClick={handleQuery}>Buscar</button>
       </div>
@@ -39,7 +39,7 @@ function App() {
         <div className="container">
           <div className="top">
             <div className="location">
-              <p>Localização não existe.</p>
+              <p>Essa cidade não existe, amor🥺</p>
             </div>
           </div>
         </div>
