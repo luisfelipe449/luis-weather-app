@@ -41,6 +41,7 @@ h1 {
 
 .App{
   color: rgb(0, 0, 0);
+  overflow: hidden!important;
 }
 
 .App:before {
