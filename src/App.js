@@ -3,8 +3,9 @@ import axios from "axios";
 
 function App() {
   const [data, setData] = useState({});
-  const [error, setError] = useState({});
+  const [error, setError] = useState("");
   const [location, setLocation] = useState("");
+  
 
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=895284fb2d2c50a520ea537456963d9c`;
 
@@ -18,14 +19,16 @@ function App() {
         })
         .catch((err) => {
           setError(err.data);
-          console.log(error);
-          setLocation("Location do not exist");
+          console.log(err.data);
+          setLocation("Try again");
           setTimeout(() => {
             setLocation(event.target.value);
           }, 3000);
         });
     }
   };
+
+  
 
   return (
     <div className="App">
@@ -38,12 +41,15 @@ function App() {
           type="text"
         />
       </div>
-      {searchLocation === undefined ? (
+      {error === undefined ? (
         <div className="container">
-          <h1>Erro</h1>
+          <div className="top">
+            <div className="location" >
+              <p>Location doesn't exist.</p>
+            </div>
+          </div>
         </div>
-      ) : null }
-      {searchLocation !== undefined && (
+      ) : (
         <div className="container">
           <div className="top">
             <div className="location">
@@ -87,7 +93,6 @@ function App() {
           )}
         </div>
       )}
-     
     </div>
   );
 }
