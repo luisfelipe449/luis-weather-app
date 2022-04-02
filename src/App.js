@@ -31,6 +31,7 @@ function App() {
 
   return (
     <div className="App">
+      <div className={(typeof data.main != "undefined") ? ((data.main.temp > 25) ? 'App-warm' : 'App') : 'App'}>
       <div className="search">
         <input
           onChange={(e) => setQuery(e.target.value)}
@@ -93,9 +94,11 @@ function App() {
                 </div>
               </div>
             )}
+            
           </div>,
         ]
       )}
+    </div>
     </div>
   );
 }
